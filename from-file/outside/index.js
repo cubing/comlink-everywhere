@@ -4,8 +4,9 @@ const useNodeWorkarounds = typeof globalThis.Worker === "undefined";
 
 export async function workerConstructor() {
   if (useNodeWorkarounds) {
-    return Worker;
+    return (await import("./node")).NodeWorkerWrapper;
   } else {
-    return (await import("./node")).NodeWorker;
+    console.log("globalThis.Worker", globalThis.Worker);
+    return globalThis.Worker;
   }
 }

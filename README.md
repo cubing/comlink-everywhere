@@ -6,9 +6,10 @@ import { workerConstructor, wrap } from "comlink-everywhere/from-file/outside";
 
 (async () => {
   const Worker = await workerConstructor();
-  const outsideAPI = wrap(
+  const api = wrap(
     new Worker(new URL("./worker.js", import.meta.url), { type: "module" })
   );
+  console.log(await api.add(3, 4));
 })();
 ```
 
@@ -18,6 +19,12 @@ NOTE: If you're running `node` , the `type` option will be ignored and the worke
 // worker.js
 import { expose } from "comlink-everywhere/from-file/inside";
 
-const insideAPI = { ... };
+const insideAPI = {
+  add: (x, y) => x + y,
+};
 expose(insideAPI);
 ```
+
+## Tradeoffs
+
+TODO
