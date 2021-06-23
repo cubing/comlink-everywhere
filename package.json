@@ -1,0 +1,28 @@
+{
+  "name": "comlink-everywhere",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgarron/comlink-everywhere.git"
+  },
+  "keywords": [],
+  "author": "Lucas Garron <code@garron.net>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/lgarron/comlink-everywhere/issues"
+  },
+  "homepage": "https://github.com/lgarron/comlink-everywhere#readme",
+  "dependencies": {
+    "comlink": "^4.3.1"
+  },
+  "exports": {
+    "./from-file/inside": {
+      "import": "./from-file/inside/index.js",
+      "types": "./from-file/inside/index.d.ts"
+    },
+    "./from-file/outside": {
+      "import": "./from-file/outside/index.js",
+      "types": "./from-file/outside/index.d.ts"
+    }
+  }
+}
