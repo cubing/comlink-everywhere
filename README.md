@@ -2,12 +2,12 @@
 
 ```js
 // index.js
-import { workerConstructor } from "comlink-everywhere/from-file/outside";
+import { workerConstructor, wrap } from "comlink-everywhere/from-file/outside";
 
-(() => {
+(async () => {
   const Worker = await workerConstructor();
-  const outsideAPI = warp(
-    new Worker(new URL("./worker.js", { type: "module" }))
+  const outsideAPI = wrap(
+    new Worker(new URL("./worker.js", import.meta.url), { type: "module" })
   );
 })();
 ```

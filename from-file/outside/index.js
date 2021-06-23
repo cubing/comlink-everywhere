@@ -2,7 +2,7 @@ export { wrap } from "comlink";
 
 const useNodeWorkarounds = typeof globalThis.Worker === "undefined";
 
-export async function workerConstructor(): Promise<typeof Worker> {
+export async function workerConstructor() {
   if (useNodeWorkarounds) {
     return Worker;
   } else {
