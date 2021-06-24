@@ -8,6 +8,8 @@ This is a workaround to help patch inconsistent environments until module worker
 
 It also helps test bundler compat issues like [snowpackjs/snowpack#3476](https://github.com/snowpackjs/snowpack/issues/3476)
 
+## Usage
+
 ```js
 // index.js
 import { workerFileConstructor, wrap } from "comlink-everywhere/outside";
@@ -30,7 +32,7 @@ expose({
 });
 ```
 
-## Construct from string
+### Construct from string
 
 ```js
 import { constructWorkerFromString } from "comlink-everywhere/outside";
