@@ -4,9 +4,8 @@ const useNodeWorkarounds = typeof globalThis.Worker === "undefined";
 
 export async function workerFileConstructor() {
   if (useNodeWorkarounds) {
-    return (await import("./node")).NodeWorkerWrapper;
+    return (await import("./node.js")).NodeWorkerWrapper;
   } else {
-    console.log("globalThis.Worker", globalThis.Worker);
     return globalThis.Worker;
   }
 }
@@ -16,7 +15,8 @@ export async function constructWorkerFromString(stringSource, options) {
   // let terminate: () => void;
   let worker;
   if (useNodeWorkarounds) {
-    const nodeWorkerStringWrapper = (await import("./node")).NodeWorkerWrapper;
+    const nodeWorkerStringWrapper = (await import("./node.js"))
+      .NodeWorkerWrapper;
     // terminate = rawWorker.terminate.bind(rawWorker);
     // @ts-ignore
     const adapter = (await import("comlink/dist/esm/node-adapter.mjs")).default;
@@ -29,5 +29,5 @@ export async function constructWorkerFromString(stringSource, options) {
     });
     // terminate = worker.terminate.bind(worker);
   }
-  return { wrappedWorker: worker, terminate };
+  return worker;
 }

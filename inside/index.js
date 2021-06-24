@@ -9,7 +9,6 @@ export function expose(api) {
       comlinkExpose(api, port);
     })();
   } else {
-    console.log("sfdfdsf");
     comlinkExpose(api);
   }
 }
