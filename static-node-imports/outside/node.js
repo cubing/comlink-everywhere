@@ -10,26 +10,14 @@ function construct(url, nodeOptions) {
   return wrappedWorker;
 }
 
-let cachedNodeWorkerWrapper = null;
-export async function NodeWorkerWrapper() {
-  return (
-    cachedNodeWorkerWrapper ||
-    (cachedNodeWorkerWrapper = class {
-      constructor(url, _options) {
-        return construct(url);
-      }
-    })
-  );
+export class NodeWorkerWrapper {
+  constructor(url, _options) {
+    return construct(url);
+  }
 }
 
-let cachedNodeWorkerStringWrapper = null;
-export async function NodeWorkerStringWrapper() {
-  return (
-    cachedNodeWorkerStringWrapper ||
-    (cachedNodeWorkerStringWrapper = class {
-      constructor(url, _options) {
-        return construct(url, { eval: true });
-      }
-    })
-  );
+export class NodeWorkerStringWrapper {
+  constructor(url, _options) {
+    return construct(url, { eval: true });
+  }
 }

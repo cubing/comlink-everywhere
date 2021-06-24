@@ -6,7 +6,7 @@ const useNodeWorkarounds =
 
 export async function workerFileConstructor() {
   if (useNodeWorkarounds) {
-    return await (await import("./node.js")).NodeWorkerWrapper();
+    return (await import("./node.js")).NodeWorkerWrapper;
   } else {
     return globalThis.Worker;
   }
@@ -15,9 +15,7 @@ export async function workerFileConstructor() {
 export async function constructWorkerFromString(stringSource, options) {
   let worker;
   if (useNodeWorkarounds) {
-    const constructor = await (
-      await import("./node.js")
-    ).NodeWorkerStringWrapper();
+    const constructor = (await import("./node.js")).NodeWorkerStringWrapper;
     const worker = new constructor(stringSource);
     return worker;
   } else {
