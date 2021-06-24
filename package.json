@@ -16,12 +16,7 @@
     "comlink": "^4.3.1"
   },
   "type": "module",
-  "main": "./main/index.js",
   "exports": {
-    ".": {
-      "import": "./main/index.js",
-      "types": "./main/index.d.ts"
-    },
     "./inside": {
       "import": "./inside/index.js",
       "types": "./inside/index.d.ts"
