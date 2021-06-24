@@ -33,7 +33,7 @@ import { constructWorkerFromString } from "comlink-everywhere/outside";
 
 (async () => {
   const worker = await constructWorkerFromString(
-    // Note this example only works in browsers.
+    // Note: this example only works in browsers.
     `self.postMessage("from worker");`
   );
   worker.addEventListener("message", (message) => console.log(message.data));
