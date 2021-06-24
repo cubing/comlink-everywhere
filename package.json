@@ -16,13 +16,13 @@
     "comlink": "^4.3.1"
   },
   "exports": {
-    "./from-file/inside": {
-      "import": "./from-file/inside/index.js",
-      "types": "./from-file/inside/index.d.ts"
+    "./inside": {
+      "import": "./inside/index.js",
+      "types": "./inside/index.d.ts"
     },
-    "./from-file/outside": {
-      "import": "./from-file/outside/index.js",
-      "types": "./from-file/outside/index.d.ts"
+    "./outside": {
+      "import": "./outside/index.js",
+      "types": "./outside/index.d.ts"
     }
   }
 }

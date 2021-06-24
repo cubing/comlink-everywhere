@@ -6,3 +6,9 @@ class NodeWorkerWrapper {
     return nodeEndpoint(new NodeWorker(url));
   }
 }
+
+class NodeWorkerStringWrapper {
+  constructor(url, _options) {
+    return nodeEndpoint(new NodeWorker(url, eval: true}));
+  }
+}
