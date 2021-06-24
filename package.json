@@ -24,6 +24,14 @@
     "./outside": {
       "import": "./outside/index.js",
       "types": "./outside/index.d.ts"
+    },
+    "./static-node-imports/inside": {
+      "import": "./static-node-imports/inside/index.js",
+      "types": "./static-node-imports/inside/index.d.ts"
+    },
+    "./static-node-imports/outside": {
+      "import": "./static-node-imports/outside/index.js",
+      "types": "./static-node-imports/outside/index.d.ts"
     }
   }
 }
