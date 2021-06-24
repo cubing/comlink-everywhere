@@ -18,7 +18,7 @@
   "type": "module",
   "main": "./main/index.js",
   "exports": {
-    "./": {
+    ".": {
       "import": "./main/index.js",
       "types": "./main/index.d.ts"
     },
