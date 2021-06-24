@@ -1,4 +1,6 @@
-export const { parentPort } = import("worker_threads");
-import { default as nodeEndpoint } from "comlink/dist/esm/node-adapter.mjs";
-
-export const port = nodeEndpoint(parentPort);
+export async function port() {
+  const { parentPort } = await import("worker_threads");
+  const nodeEndpoint = (await import("comlink/dist/esm/node-adapter.mjs"))
+    .default;
+  return nodeEndpoint(parentPort);
+}

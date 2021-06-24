@@ -6,7 +6,7 @@ export function expose(api) {
   if (useNodeWorkarounds) {
     (async () => {
       const { port } = await import("./node.js");
-      comlinkExpose(api, port);
+      comlinkExpose(api, await port());
     })();
   } else {
     comlinkExpose(api);

@@ -15,6 +15,7 @@
   "dependencies": {
     "comlink": "^4.3.1"
   },
+  "type": "module",
   "exports": {
     "./inside": {
       "import": "./inside/index.js",
