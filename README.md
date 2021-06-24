@@ -44,4 +44,5 @@ import { constructWorkerFromString } from "comlink-everywhere/outside";
 
 - If you're running `node` , the `type` option will be ignored and the worker will be instantiated as a classic/module worker matching the calling code. See <https://github.com/nodejs/node/issues/30682>
 - This library is written as ESM. It is only meant to be used with ESM, except specifically for workers instantiated from strings (as a workaround for Firefox and Safari's lack of module worker support).
-- TODO: document more tradeoffs.
+- The `Worker` constructor cannot be retrieved synchronously.
+  - The implementation uses a dynamic import to get the `node` constructor for better compatibility (by not importing `node` modules unless necessary), which means it is not available synchronosuly.
