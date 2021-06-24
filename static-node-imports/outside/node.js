@@ -1,8 +1,7 @@
+import { Worker as NodeWorker } from "worker_threads";
+import { default as nodeEndpoint } from "comlink/dist/esm/node-adapter.mjs";
 
-import {Worker as NodeWorker} from "worker_threads";,
-import {default as nodeEndpoint} from "comlink/dist/esm/node-adapter.mjs";,
-
-function construct( url, nodeOptions) {
+function construct(url, nodeOptions) {
   const worker = new NodeWorker(url, nodeOptions);
   // Avoid holding up the entire program exit if only workers are running.
   // https://nodejs.org/api/worker_threads.html#worker_threads_broadcastchannel_unref
@@ -17,7 +16,7 @@ export async function NodeWorkerWrapper() {
     cachedNodeWorkerWrapper ||
     (cachedNodeWorkerWrapper = class {
       constructor(url, _options) {
-        return construct( url);
+        return construct(url);
       }
     })
   );
@@ -29,7 +28,7 @@ export async function NodeWorkerStringWrapper() {
     cachedNodeWorkerStringWrapper ||
     (cachedNodeWorkerStringWrapper = class {
       constructor(url, _options) {
-        return construct( url, { eval: true });
+        return construct(url, { eval: true });
       }
     })
   );
