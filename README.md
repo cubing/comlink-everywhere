@@ -21,10 +21,9 @@ import { workerConstructor, wrap } from "comlink-everywhere/outside";
 // worker.js
 import { expose } from "comlink-everywhere/inside";
 
-const insideAPI = {
+expose({
   add: (x, y) => x + y,
-};
-expose(insideAPI);
+});
 ```
 
 ## Construct from string
