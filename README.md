@@ -1,6 +1,10 @@
 # `comlink-everywhere`
 
-This is a workaround to help patch inconsistent environments until ESM (and eventually [module block](https://github.com/tc39/proposal-js-module-blocks) workers) are available everywhere.
+This is a workaround to help patch inconsistent environments until module workers (and eventually [module block](https://github.com/tc39/proposal-js-module-blocks) workers) are available everywhere. Module workers are:
+
+- Available in Chromium-based browers, `node` (with an API significantly differing from all other environments), and [`deno`](https://deno.land/manual/runtime/workers).
+- [Implemented in Safari](https://bugs.webkit.org/show_bug.cgi?id=164860), but probably not available on iOS until iOS 15.
+- [In progress](https://bugzilla.mozilla.org/show_bug.cgi?id=1247687) for Firefox
 
 It also helps test bundler compat issues like [snowpackjs/snowpack#3476](https://github.com/snowpackjs/snowpack/issues/3476)
 
@@ -39,6 +43,8 @@ import { constructWorkerFromString } from "comlink-everywhere/outside";
   worker.addEventListener("message", (message) => console.log(message.data));
 })();
 ```
+
+For maximum compatibility in the short term, the best option is to compile the worker into a source string that does not use any imports, and does not use any syntax or functions specific to CommonJS (e.g. `require()`), ESM (e.g. `import`), or the web (e.g. `importScripts()`)
 
 ## Tradeoffs
 
