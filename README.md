@@ -10,7 +10,7 @@ It also helps test bundler compat issues like [snowpackjs/snowpack#3476](https:/
 
 ```js
 // index.js
-import { workerConstructor, wrap } from "comlink-everywhere/outside";
+import { workerFileConstructor, wrap } from "comlink-everywhere/outside";
 
 (async () => {
   const Worker = await workerFileConstructor();
