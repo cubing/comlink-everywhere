@@ -9,6 +9,6 @@ class NodeWorkerWrapper {
 
 class NodeWorkerStringWrapper {
   constructor(url, _options) {
-    return nodeEndpoint(new NodeWorker(url, eval: true}));
+    return nodeEndpoint(new NodeWorker(url, { eval: true }));
   }
 }

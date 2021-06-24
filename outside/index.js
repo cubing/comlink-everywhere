@@ -15,12 +15,12 @@ export async function constructWorkerFromString(stringSource, options) {
   // let terminate: () => void;
   let worker;
   if (useNodeWorkarounds) {
-    const nodeWorkerStringWrapper = (await import("./node.js"))
-      .NodeWorkerWrapper;
+    const worker = new (await import("./node.js")).NodeWorkerStringWrapper(
+      stringSource
+    );
     // terminate = rawWorker.terminate.bind(rawWorker);
     // @ts-ignore
-    const adapter = (await import("comlink/dist/esm/node-adapter.mjs")).default;
-    worker = adapter(rawWorker);
+    return worker;
   } else {
     const blob = new Blob([stringSource], { type: "application/javascript" });
     const workerURL = URL.createObjectURL(blob);

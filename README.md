@@ -23,6 +23,20 @@ const insideAPI = {
 expose(insideAPI);
 ```
 
+## Construct from string
+
+```js
+import { constructWorkerFromString } from "comlink-everywhere/outside";
+
+(async () => {
+  const worker = await constructWorkerFromString(
+    // Note this example only works in browsers.
+    `self.postMessage("from worker");`
+  );
+  worker.addEventListener("message", (message) => console.log(message.data));
+})();
+```
+
 ## Tradeoffs
 
 - If you're running `node` , the `type` option will be ignored and the worker will be instantiated as a classic/module worker matching the calling code. See <https://github.com/nodejs/node/issues/30682>
