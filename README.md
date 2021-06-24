@@ -1,5 +1,9 @@
 # `comlink-everywhere`
 
+This is a workaround to help patch inconsistent environments until ESM (and eventually [module block](https://github.com/tc39/proposal-js-module-blocks) workers) are available everywhere.
+
+It also helps test bundler compat issues like [snowpackjs/snowpack#3476](https://github.com/snowpackjs/snowpack/issues/3476)
+
 ```js
 // index.js
 import { workerConstructor, wrap } from "comlink-everywhere/outside";
