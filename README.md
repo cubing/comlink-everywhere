@@ -2,10 +2,10 @@
 
 ```js
 // index.js
-import { workerConstructor, wrap } from "comlink-everywhere/from-file/outside";
+import { workerConstructor, wrap } from "comlink-everywhere/outside";
 
 (async () => {
-  const Worker = await workerConstructor();
+  const Worker = await workerFileConstructor();
   const api = wrap(
     new Worker(new URL("./worker.js", import.meta.url), { type: "module" })
   );
@@ -15,7 +15,7 @@ import { workerConstructor, wrap } from "comlink-everywhere/from-file/outside";
 
 ```js
 // worker.js
-import { expose } from "comlink-everywhere/from-file/inside";
+import { expose } from "comlink-everywhere/inside";
 
 const insideAPI = {
   add: (x, y) => x + y,

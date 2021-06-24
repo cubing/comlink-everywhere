@@ -11,10 +11,10 @@ export async function workerFileConstructor() {
   }
 }
 
-export async function workerStringConstructor(stringSource: string, { type: "classic" | "module" }): void {
+export async function constructWorkerFromString(stringSource, options) {
   // TODO: trampoline??
   // let terminate: () => void;
-  let worker: Worker;
+  let worker;
   if (useNodeWorkarounds) {
     const nodeWorkerStringWrapper = (await import("./node")).NodeWorkerWrapper;
     // terminate = rawWorker.terminate.bind(rawWorker);
@@ -22,12 +22,12 @@ export async function workerStringConstructor(stringSource: string, { type: "cla
     const adapter = (await import("comlink/dist/esm/node-adapter.mjs")).default;
     worker = adapter(rawWorker);
   } else {
-    const blob = new Blob([workerSource], { type: "application/javascript" });
+    const blob = new Blob([stringSource], { type: "application/javascript" });
     const workerURL = URL.createObjectURL(blob);
     worker = new globalThis.Worker(workerURL, {
-      type
+      type: options ? options.type : undefined, // TODO: Is it safe to use `options?.type`?
     });
     // terminate = worker.terminate.bind(worker);
   }
-  return { wrappedWorker: wrap(worker) as WorkerInsideAPI, terminate };
+  return { wrappedWorker: worker, terminate };
 }
